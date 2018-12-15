@@ -35,5 +35,25 @@ public class CacheEntry<K, V> {
         return System.currentTimeMillis() > expireTime;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        CacheEntry<?, ?> that = (CacheEntry<?, ?>) o;
+
+        if (expireTime != that.expireTime) return false;
+        if (key != null ? !key.equals(that.key) : that.key != null) return false;
+        if (value != null ? !value.equals(that.value) : that.value != null) return false;
+        return duration != null ? duration.equals(that.duration) : that.duration == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (expireTime ^ (expireTime >>> 32));
+        result = 31 * result + (key != null ? key.hashCode() : 0);
+        result = 31 * result + (value != null ? value.hashCode() : 0);
+        result = 31 * result + (duration != null ? duration.hashCode() : 0);
+        return result;
+    }
 }

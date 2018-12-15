@@ -6,7 +6,7 @@ import java.util.List;
 public class RemoveDuplicatesFromSortedArray {
 
     public static void main(String[] args) {
-        Integer[] arr = {1,1,2};
+        Integer[] arr = {1,1,1,1,1,2,2,2,2,3,3,4};
         int result = removeDuplicates(Arrays.asList(arr));
         System.out.println("result: "+result);
     }
@@ -29,7 +29,7 @@ public class RemoveDuplicatesFromSortedArray {
         }
         int n1 = a.get(n-1);
         a.set(j++,n1);
-
+        System.out.println("List:"+a);
         return j;
     }
 }
