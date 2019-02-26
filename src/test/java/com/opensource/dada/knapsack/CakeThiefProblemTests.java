@@ -1,7 +1,8 @@
-package com.opensource.dada.problems;
+package com.opensource.dada.knapsack;
 
+import com.opensource.dada.knapsack.CakeType;
 import org.junit.jupiter.api.Test;
-import static com.opensource.dada.problems.CakeThiefProblem.maxDuffelBagValue;
+import static com.opensource.dada.knapsack.CakeThiefProblem.maxDuffelBagValue;
 import static org.junit.jupiter.api.Assertions.*;
 public class CakeThiefProblemTests {
     // tests

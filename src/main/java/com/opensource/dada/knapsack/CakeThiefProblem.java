@@ -1,4 +1,4 @@
-package com.opensource.dada.problems;
+package com.opensource.dada.knapsack;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -69,7 +69,6 @@ public class CakeThiefProblem {
         // duffel bag weight capacity from 0 to weightCapacity
         // starting each index with value 0
         long[] maxValuesAtCapacities = new long[weightCapacity + 1];
-        Map<Long,Long> maxValuesAtCapacitiesMap = new HashMap<>();
 
         for (int currentCapacity = 0; currentCapacity <= weightCapacity; currentCapacity++) {
 
