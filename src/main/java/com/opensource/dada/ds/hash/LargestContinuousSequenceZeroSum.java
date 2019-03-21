@@ -46,7 +46,7 @@ public class LargestContinuousSequenceZeroSum {
     }
 
     public static ArrayList<Integer> lszero(List<Integer> A) {
-        ArrayList<Integer> ans = new ArrayList<Integer>();
+        ArrayList<Integer> ans = new ArrayList<>();
 
         int sum = 0;
 

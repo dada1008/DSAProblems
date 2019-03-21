@@ -3,9 +3,9 @@ package com.opensource.dada.ds.tree;
 import java.util.Objects;
 
 public class TreeNode<E> {
-    private E value;
-    private TreeNode<E> left;
-    private TreeNode<E> right;
+    public E value;
+    public TreeNode<E> left;
+    public TreeNode<E> right;
 
     public TreeNode(E value) {
         this.value = value;
@@ -75,5 +75,24 @@ public class TreeNode<E> {
         return "TreeNode{" +
                 "value=" + value +
                 '}';
+    }
+
+    // Recursive function to insert an key into BST
+    public static TreeNode<Integer> insert(TreeNode<Integer> root, int key) {
+        // if the root is null, create a new node an return it
+        if (root == null) {
+            return new TreeNode<>(key);
+        }
+
+        // if given key is less than the root node, recurse for left subtree
+        if (key < root.value) {
+            root.left = insert(root.left, key);
+        }
+        // if given key is more than the root node, recurse for right subtree
+        else {
+            root.right = insert(root.right, key);
+        }
+
+        return root;
     }
 }
