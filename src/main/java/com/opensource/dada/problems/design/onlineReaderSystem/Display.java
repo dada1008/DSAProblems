@@ -1,4 +1,4 @@
-package com.opensource.dada.problems.onlineReaderSystem;
+package com.opensource.dada.problems.design.onlineReaderSystem;
 
 /**
  * Class to display active user and associated book
