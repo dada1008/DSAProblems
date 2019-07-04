@@ -2,7 +2,7 @@ package com.opensource.dada.ds.tree;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
+import java.util.Stack;
 
 public class TreeTraversals {
     public static void main(String[] args) {
@@ -21,8 +21,8 @@ public class TreeTraversals {
         inOrder(root);
         System.out.println("\nPostOrder: ");
         postOrder(root);
-        System.out.println("\nDepthFirst: ");
-        depthFirst(root);
+        System.out.println("\nBreadth First: ");
+        breadthFirst(root);
     }
 
     public static void preOrder(TreeNode<Character> node) {
@@ -45,6 +45,37 @@ public class TreeTraversals {
         }
     }
 
+    // Iterative function to perform in-order traversal of the tree
+    public static void inorderIterative(TreeNode root)
+    {
+        // create an empty stack
+        Stack<TreeNode> stack = new Stack();
+
+        // start from root node (set current node to root node)
+        TreeNode curr = root;
+
+        // if current node is null and stack is also empty, we're done
+        while (!stack.empty() || curr != null)
+        {
+            // if current node is not null, push it to the stack (defer it)
+            // and move to its left child
+            if (curr != null)
+            {
+                stack.push(curr);
+                curr = curr.left;
+            }
+            else
+            {
+                // else if current node is null, we pop an element from stack,
+                // print it and finally set current node to its right child
+                curr = stack.pop();
+                System.out.print(curr.value + " ");
+
+                curr = curr.right;
+            }
+        }
+    }
+
     public static void postOrder(TreeNode<Character> node) {
         if (node.getLeft()!=null) {
             postOrder(node.getLeft());
@@ -55,11 +86,11 @@ public class TreeTraversals {
         System.out.printf(node.getValue()+" ");
     }
 
-    public static void depthFirst(TreeNode<Character> node) {
-        Queue<TreeNode<Character>> queue = new ArrayDeque<>();
+    public static void breadthFirst(TreeNode<?> node) {
+        Queue<TreeNode<?>> queue = new ArrayDeque<>();
         queue.add(node);
         while(!queue.isEmpty()) {
-            TreeNode<Character> treeNode = queue.remove();
+            TreeNode<?> treeNode = queue.remove();
             System.out.printf(treeNode.getValue()+" ");
             if (treeNode.getLeft()!=null) {
                 queue.add(treeNode.getLeft());

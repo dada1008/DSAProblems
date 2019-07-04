@@ -1,4 +1,4 @@
-package com.opensource.dada.problems;
+package com.opensource.dada.problems.pattern.twoPointers;
 
 import java.util.ArrayList;
 import java.util.Arrays;

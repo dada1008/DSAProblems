@@ -8,4 +8,12 @@ public class LinkedListNode {
     public LinkedListNode(int value) {
         this.value = value;
     }
+
+    public static void print(LinkedListNode node) {
+        while (node!=null) {
+            System.out.print(node.value+"->");
+            node = node.next;
+        }
+        System.out.println("NULL");
+    }
 }

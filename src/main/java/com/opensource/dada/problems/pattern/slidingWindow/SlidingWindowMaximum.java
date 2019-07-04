@@ -1,4 +1,4 @@
-package com.opensource.dada.problems.leetcode;
+package com.opensource.dada.problems.pattern.slidingWindow;
 
 import java.util.Arrays;
 import java.util.LinkedList;

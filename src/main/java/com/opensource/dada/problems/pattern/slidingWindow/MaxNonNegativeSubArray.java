@@ -1,4 +1,4 @@
-package com.opensource.dada.problems.interviewbit;
+package com.opensource.dada.problems.pattern.slidingWindow;
 
 import com.sun.source.tree.Tree;
 

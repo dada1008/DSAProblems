@@ -95,7 +95,7 @@ public class PrintDependencies {
 
         private Vertex(String name){
             this.name = name;
-            this.dependencies = new ArrayList<Vertex>();
+            this.dependencies = new ArrayList<>();
         }
     }
 
@@ -104,8 +104,8 @@ public class PrintDependencies {
         HashMap<String, Vertex> vertexLookup;
 
         private Graph(){
-            this.vertices = new ArrayList<Vertex>();
-            this.vertexLookup = new HashMap<String, Vertex>();
+            this.vertices = new ArrayList<>();
+            this.vertexLookup = new HashMap<>();
         }
 
         private Vertex getVertex(String libName){
@@ -135,8 +135,8 @@ public class PrintDependencies {
         }
 
         //construct the list for return
-        ArrayList<String> results = new ArrayList<String>(g.vertices.size());
-        HashMap<String, State> loadState = new HashMap<String, State>();
+        ArrayList<String> results = new ArrayList<>(g.vertices.size());
+        HashMap<String, State> loadState = new HashMap<>();
         try{
             for(int i = 0; i < g.vertices.size(); i++){
                 tryLoad(g.vertices.get(i), results, loadState );
