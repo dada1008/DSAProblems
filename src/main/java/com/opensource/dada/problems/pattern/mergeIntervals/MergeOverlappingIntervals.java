@@ -25,11 +25,7 @@ public class MergeOverlappingIntervals {
     public static void mergeIntervals(Interval arr[]) {
         // Sort Intervals in decreasing order of
         // start time
-        Arrays.sort(arr, new Comparator<Interval>() {
-            public int compare(Interval i1, Interval i2) {
-                return i1.start - i2.start;
-            }
-        });
+        Arrays.sort(arr, (i1, i2) -> Integer.compare(i1.start, i2.start));
 
         int index = 0; // Stores index of last element
         // in output array (modified arr[])
@@ -66,11 +62,3 @@ public class MergeOverlappingIntervals {
     }
 }
 
-class Interval {
-    int start, end;
-
-    Interval(int start, int end) {
-        this.start = start;
-        this.end = end;
-    }
-}

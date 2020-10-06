@@ -24,6 +24,12 @@ import java.util.List;
  */
 public class MaxContinuousSeriesOf1s {
     public static void main(String[] args) {
+        test1();
+        test2();
+        test3();
+    }
+
+    public static void test1() {
         List<Integer> A = Arrays.asList(1,1,0,1,1,0,0,1,1,1);
         int B =2;
 
@@ -31,6 +37,48 @@ public class MaxContinuousSeriesOf1s {
         System.out.println("Result: "+res);
     }
 
+    public static void test2() {
+        List<Integer> A = Arrays.asList(0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1);
+        int B =2;
+
+        List<Integer> res = maxoneMyPractice(A,B);
+        System.out.println("Result: "+res);//6
+    }
+
+    public static void test3() {
+        List<Integer> A = Arrays.asList(0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1);
+        int B =3;
+        List<Integer> res = maxoneMyPractice(A,B);
+        System.out.println("Result: "+res);//9
+    }
+
+    public static List<Integer> maxoneMyPractice(List<Integer> list, int k) {
+        int start =0, end = 0, windowStart = 0, maxZeroRepeat =0;
+        for (int windowEnd = 0; windowEnd < list.size(); windowEnd++) {
+            int num = list.get(windowEnd);
+            if (num==0) {
+                maxZeroRepeat++;
+            }
+            if (maxZeroRepeat > k) {
+                int leftNum = list.get(windowStart);
+                if (leftNum==0) {
+                    maxZeroRepeat--;
+                }
+                windowStart++;
+            }
+
+            if ((end - start) < (windowEnd - windowStart)) {
+                end = windowEnd;
+                start = windowStart;
+            }
+        }
+
+        List<Integer> res = new ArrayList<>();
+        for (int i=start; i<=end;i++) {
+            res.add(i);
+        }
+        return res;
+    }
     public static List<Integer> maxoneMy(List<Integer> A, int B) {
 
         int left =0, right =0, len =0, count0 =0, start=0, end =0;

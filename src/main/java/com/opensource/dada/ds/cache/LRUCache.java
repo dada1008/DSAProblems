@@ -18,8 +18,8 @@ import java.util.Map;
 public class LRUCache<K, V> {
     int capacity;
     Map<K, Node> map = new HashMap<>();
-    Node head = null;
-    Node end = null;
+    Node<K, V> head = null;
+    Node<K, V> end = null;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;

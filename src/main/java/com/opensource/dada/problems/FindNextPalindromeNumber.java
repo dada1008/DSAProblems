@@ -10,6 +10,7 @@ public class FindNextPalindromeNumber {
         int number4 = 4531;
         int number5 = 1459;
         int number6 = 1997;
+        int number7 = 99999;
         System.out.print("For the number " + number1);
         getNextPalindrome(number1);
         System.out.print("For the number " + number2);
@@ -22,6 +23,8 @@ public class FindNextPalindromeNumber {
         getNextPalindrome(number5);
         System.out.print("For the number " + number6);
         getNextPalindrome(number6);
+        System.out.print("For the number " + number7);
+        getNextPalindrome(number7);
     }
 
     public static void nextPalindrome2(String num) {

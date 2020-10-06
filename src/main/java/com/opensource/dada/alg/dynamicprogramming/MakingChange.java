@@ -1,4 +1,4 @@
-package com.opensource.dada.problems;
+package com.opensource.dada.alg.dynamicprogramming;
 
 /*
  * Title: Making change

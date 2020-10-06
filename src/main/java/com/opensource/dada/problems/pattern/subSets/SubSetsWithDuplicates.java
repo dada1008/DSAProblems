@@ -1,10 +1,21 @@
 package com.opensource.dada.problems.pattern.subSets;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.*;
 
 /**
  * Problem: https://www.geeksforgeeks.org/power-set/
+ *
+ * Given a set of numbers that might contain duplicates, find all of its distinct subsets.
+ *
+ * Example 1:
+ *
+ * Input: [1, 3, 3]
+ * Output: [], [1], [3], [1,3], [3,3], [1,3,3]
+ * Example 2:
+ *
+ * Input: [1, 5, 3, 3]
+ * Output: [], [1], [5], [3], [1,5], [1,3], [5,3], [1,5,3], [3,3], [1,3,3], [3,3,5], [1,5,3,3]
+ *
  */
 public class SubSetsWithDuplicates {
 
@@ -63,6 +74,29 @@ public class SubSetsWithDuplicates {
         // or don't consider nth element
         set.removeLast();
         findPowerSet(S, set, n - 1);
+    }
+
+    static List<List<Integer>> findSubsets(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> subsets = new ArrayList<>();
+        subsets.add(new ArrayList<>());
+        int startIndex =0, endIndex = 0;
+        for (int i=0; i<nums.length; i++) {
+            startIndex = 0;
+            // if current and the previous elements are same, create new subsets only from the subsets
+            // added in the previous step
+            if (i>0 && nums[i]==nums[i-1]) {
+                startIndex = endIndex + 1;
+            }
+            endIndex = subsets.size() -1;
+            for (int j = startIndex; j <= endIndex; j++) {
+                // create a new subset from the existing subset and insert the current element to it
+                List<Integer> set = new ArrayList<>(subsets.get(i));
+                set.add(nums[i]);
+                subsets.add(set);
+            }
+        }
+        return subsets;
     }
 
 }

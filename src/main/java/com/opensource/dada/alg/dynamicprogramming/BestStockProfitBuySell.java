@@ -1,4 +1,4 @@
-package com.opensource.dada.problems;
+package com.opensource.dada.alg.dynamicprogramming;
 
 /** Problem:
  * I grabbed Apple's stock prices from yesterday

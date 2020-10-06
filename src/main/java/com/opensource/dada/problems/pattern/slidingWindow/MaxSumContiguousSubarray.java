@@ -76,4 +76,13 @@ public class MaxSumContiguousSubarray {
         System.out.println("Starting index:" + start + " Ending index:" + end);
         return ans;
     }
+    public static int kadaneAlgorithm(List<Integer> list) {
+        int maxEndingHere = list.get(0);
+        int maxSoFar = list.get(0);
+        for (int i = 1; i < list.size(); i++) {
+            maxEndingHere = Math.max(maxEndingHere+list.get(i), maxEndingHere);
+            maxSoFar = Math.max(maxSoFar, maxEndingHere);
+        }
+        return maxSoFar;
+    }
 }

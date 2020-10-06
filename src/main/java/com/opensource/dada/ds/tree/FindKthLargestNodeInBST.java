@@ -13,11 +13,11 @@ public class FindKthLargestNodeInBST {
         }
 
         // search in right subtree
-        int left = kthLargest(root.right, i, k);
+        int right = kthLargest(root.right, i, k);
 
-        // if k'th smallest is found in left subtree, return it
-        if (left != Integer.MAX_VALUE) {
-            return left;
+        // if k'th smallest is found in right subtree, return it
+        if (right != Integer.MAX_VALUE) {
+            return right;
         }
 
         // if current element is k'th smallest, return its value

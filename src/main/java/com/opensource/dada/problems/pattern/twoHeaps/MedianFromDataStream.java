@@ -7,6 +7,24 @@ import java.util.PriorityQueue;
  * Problem: https://www.geeksforgeeks.org/median-of-stream-of-integers-running-integers/
  *          https://www.hackerrank.com/challenges/find-the-running-median/problem
  *          https://leetcode.com/problems/find-median-from-data-stream/
+ *
+ * Design a class to calculate the median of a number stream.
+ * The class should have the following two methods:
+ *
+ * insertNum(int num): stores the number in the class
+ * findMedian(): returns the median of all numbers inserted in the class
+ * If the count of numbers inserted in the class is even,
+ * the median will be the average of the middle two numbers.
+ *
+ * Example 1:
+ *
+ * 1. insertNum(3)
+ * 2. insertNum(1)
+ * 3. findMedian() -> output: 2
+ * 4. insertNum(5)
+ * 5. findMedian() -> output: 3
+ * 6. insertNum(4)
+ * 7. findMedian() -> output: 3.5
  */
 public class MedianFromDataStream {
 
@@ -14,6 +32,7 @@ public class MedianFromDataStream {
         test1();
         test2();
         test3();
+        test4();
     }
     public static void test1() {
         System.out.println("Test1 result");
@@ -28,6 +47,11 @@ public class MedianFromDataStream {
     public static void test3() {
         System.out.println("Test3 result");
         medianTracker(new int[]{5, 15, 1, 3});//Output 5, 10, 5, 4
+    }
+
+    public static void test4() {
+        System.out.println("Test4 result");
+        medianTracker(new int[]{5, 10, 100, 200, 6, 13, 14});//Output 5, 7.5, 10, 55, 10, 11.5, 13
     }
 
     // - We use 2 Heaps to keep track of median
@@ -46,23 +70,19 @@ public class MedianFromDataStream {
     }
 
     private static void addNumber(int n, PriorityQueue<Integer> maxHeap, PriorityQueue<Integer> minHeap) {
-        if (maxHeap.isEmpty()) {
+        if (maxHeap.isEmpty() || maxHeap.peek() >= n) {
             maxHeap.add(n);
-        } else if (maxHeap.size() == minHeap.size()) {
-            if (n < minHeap.peek()) {
-                maxHeap.add(n);
-            } else {
-                minHeap.add(n);
-                maxHeap.add(minHeap.remove());
-            }
-        } else if (maxHeap.size() > minHeap.size()) {
-            if (n > maxHeap.peek()) {
-                minHeap.add(n);
-            } else {
-                maxHeap.add(n);
-                minHeap.add(maxHeap.remove());
-            }
+        } else {
+            minHeap.add(n);
         }
+
+        // either both the heaps will have equal number of elements or max-heap will have one
+        // more element than the min-heap
+            if (maxHeap.size() > minHeap.size() + 1) {
+                minHeap.add(maxHeap.poll());
+            } else if (maxHeap.size() < minHeap.size()) {
+                maxHeap.add(minHeap.poll());
+            }
         // maxHeap will never have fewer elements than minHeap
     }
 

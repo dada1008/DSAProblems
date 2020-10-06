@@ -17,10 +17,30 @@ package com.opensource.dada.problems.pattern.cyclicSort;
  *
  * N is an integer within the range [1..100,000];
  * each element of array A is an integer within the range [−1,000,000..1,000,000].
+ *
+ *
+ * Find the Smallest Missing Positive Number (medium) #
+ * Given an unsorted array containing numbers, find the smallest missing positive number in it.
+ *
+ * Example 1:
+ *
+ * Input: [-3, 1, 5, 4, 2]
+ * Output: 3
+ * Explanation: The smallest missing positive number is '3'
+ * Example 2:
+ *
+ * Input: [3, -2, 0, 1, 2]
+ * Output: 4
+ * Example 3:
+ *
+ * Input: [3, 2, 5, 1]
+ * Output: 4
  */
 public class MissingSmallestInteger {
     public static void main(String[] agrs) {
-
+        System.out.println("Result:"+findSmallestMissingNumber(new int[]{-3, 1, 5, 4, 2}));//3
+        System.out.println("Result:"+findSmallestMissingNumber(new int[]{3, -2, 0, 1, 2}));//4
+        System.out.println("Result:"+findSmallestMissingNumber(new int[]{3, 2, 5, 1}));//4
     }
     public int solution(int[] A) {
         int n = A.length;
@@ -135,5 +155,29 @@ public class MissingSmallestInteger {
         // findMissingPositive for
         // positive part
         return findMissingPositive(arr2, j);
+    }
+
+    static int findSmallestMissingNumber(int[] nums) {
+        int i = 0;
+        while (i < nums.length) {
+            if (nums[i] > 0 && nums[i] <= nums.length && nums[i] != nums[nums[i]-1]) {
+                swap(nums, i, nums[i]-1);
+            } else {
+                i++;
+            }
+        }
+
+        for (int j = 0; j < nums.length; j++) {
+            if (nums[j] != j+1) {
+                return j+1;
+            }
+        }
+        return nums.length+1;
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }

@@ -16,4 +16,11 @@ public class LinkedListNode {
         }
         System.out.println("NULL");
     }
+
+    @Override
+    public String toString() {
+        return "LinkedListNode{" +
+                "value=" + value +
+                '}';
+    }
 }

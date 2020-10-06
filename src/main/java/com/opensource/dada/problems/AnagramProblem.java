@@ -1,9 +1,11 @@
 package com.opensource.dada.problems;
 
 /** Problem: 1
- * Two strings,  and , are called anagrams if they contain all the same characters in the same frequencies. For example, the anagrams of CAT are CAT, ACT, TAC, TCA, ATC, and CTA.
+ * Two strings,  and , are called anagrams if they contain all the same characters in the same frequencies.
+ * For example, the anagrams of CAT are CAT, ACT, TAC, TCA, ATC, and CTA.
  *
- * Complete the function in the editor. If  and  are case-insensitive anagrams, print "Anagrams"; otherwise, print "Not Anagrams" instead.
+ * Complete the function in the editor. If  and  are case-insensitive anagrams, print "Anagrams";
+ * otherwise, print "Not Anagrams" instead.
  *
  * Input Format
  *
@@ -71,27 +73,6 @@ package com.opensource.dada.problems;
 
 import java.util.*;
 
-/** Problem: 2
- * Given an array of strings, find all anagram pairs in the given array.
- * Example:
- *
- * Input: arr[] =  {"geeksquiz", "geeksforgeeks", "abcd",
- *                  "forgeeksgeeks", "zuiqkeegs"};
- * Output: (geeksforgeeks, forgeeksgeeks), (geeksquiz, zuiqkeegs)
- */
-
-/** Problem: 3
- * Two words are anagrams of one another if their letters can be rearranged to form the other word.
- *
- * In this challenge, you will be given a string. You must split it into two contiguous substrings,
- * then determine the minimum number of characters to change to make the two substrings into anagrams
- * of one another.
- *
- * For example, given the string 'abccde', you would break it into two parts: 'abc' and 'cde'.
- * Note that all letters have been used, the substrings are contiguous and their lengths are equal.
- * Now you can change 'a' and 'b' in the first substring to 'd' and 'e' to have 'dec' and 'cde'
- * which are anagrams. Two changes were necessary.
- */
 public class AnagramProblem {
 
     public static void main(String[] args) {
@@ -134,6 +115,14 @@ public class AnagramProblem {
         return summ == 0;
     }
 
+    /** Problem: 2
+     * Given an array of strings, find all anagram pairs in the given array.
+     * Example:
+     *
+     * Input: arr[] =  {"geeksquiz", "geeksforgeeks", "abcd",
+     *                  "forgeeksgeeks", "zuiqkeegs"};
+     * Output: (geeksforgeeks, forgeeksgeeks), (geeksquiz, zuiqkeegs)
+     */
     //Problem:2
     public static void findAllAnagramPair(String[] arr) {
         Map<String, List<String>> map = new HashMap<>();
@@ -151,6 +140,18 @@ public class AnagramProblem {
         System.out.println("Print Anagram pair:"+map.values());
     }
 
+    /** Problem: 3
+     * Two words are anagrams of one another if their letters can be rearranged to form the other word.
+     *
+     * In this challenge, you will be given a string. You must split it into two contiguous substrings,
+     * then determine the minimum number of characters to change to make the two substrings into anagrams
+     * of one another.
+     *
+     * For example, given the string 'abccde', you would break it into two parts: 'abc' and 'cde'.
+     * Note that all letters have been used, the substrings are contiguous and their lengths are equal.
+     * Now you can change 'a' and 'b' in the first substring to 'd' and 'e' to have 'dec' and 'cde'
+     * which are anagrams. Two changes were necessary.
+     */
     //Problem:3
     static int anagram(String s) {
         char[] charArr = s.toCharArray();
@@ -163,6 +164,7 @@ public class AnagramProblem {
         return anagramSol2(charArr1, charArr2);
     }
 
+    //Time complexity O(nlogn)
     private static int anagramSol1(char[] charArr1, char[] charArr2) {
         Arrays.sort(charArr1);
         Arrays.sort(charArr2);
@@ -175,6 +177,7 @@ public class AnagramProblem {
         return changeCount;
     }
 
+    //Time complexity O(n)
     //better solution
     static int anagramSol2(char[] charArr1, char[] charArr2) {
             int count = 0;

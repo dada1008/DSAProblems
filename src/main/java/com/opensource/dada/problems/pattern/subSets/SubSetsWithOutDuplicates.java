@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Problem: https://www.geeksforgeeks.org/find-distinct-subsets-given-set/
- *          https://leetcode.com/problems/subsets-ii/
+ * https://leetcode.com/problems/subsets-ii/
  */
 public class SubSetsWithOutDuplicates {
 
@@ -43,14 +43,15 @@ public class SubSetsWithOutDuplicates {
             }
 
         }
-        for (String subset: list) {
+        for (String subset : list) {
             String[] arr = subset.split("|");
-            for (String str: arr) {
-                System.out.print(str+" ");
+            for (String str : arr) {
+                System.out.print(str + " ");
             }
             System.out.println("");
         }
     }
+
     //Recursive
     public static void findPowerSet(Integer[] S) {
         // sort the set
@@ -60,12 +61,12 @@ public class SubSetsWithOutDuplicates {
         List<Integer> out = new ArrayList<>();
         findPowerSet(S, out, S.length - 1);
     }
+
     // Recursive function to print all distinct subsets of S
     // S	--> input set
     // out  --> list to store subset
     // i	--> index of next element in set S to be processed
-    public static void findPowerSet(Integer[] S, List<Integer> out, int i)
-    {
+    public static void findPowerSet(Integer[] S, List<Integer> out, int i) {
         // if all elements are processed, print the current subset
         if (i < 0) {
             System.out.println(out);

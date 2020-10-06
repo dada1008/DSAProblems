@@ -25,7 +25,7 @@ public class TreeTraversals {
         breadthFirst(root);
     }
 
-    public static void preOrder(TreeNode<Character> node) {
+    public static <T> void preOrder(TreeNode<T> node) {
         System.out.printf(node.getValue()+" ");
         if (node.getLeft()!=null) {
             preOrder(node.getLeft());
@@ -35,7 +35,7 @@ public class TreeTraversals {
         }
     }
 
-    public static void inOrder(TreeNode<Character> node) {
+    public static <T> void inOrder(TreeNode<T> node) {
         if (node.getLeft()!=null) {
             inOrder(node.getLeft());
         }
@@ -46,7 +46,7 @@ public class TreeTraversals {
     }
 
     // Iterative function to perform in-order traversal of the tree
-    public static void inorderIterative(TreeNode root)
+    public static <T> void inorderIterative(TreeNode<T> root)
     {
         // create an empty stack
         Stack<TreeNode> stack = new Stack();
@@ -76,7 +76,7 @@ public class TreeTraversals {
         }
     }
 
-    public static void postOrder(TreeNode<Character> node) {
+    public static<T>void postOrder(TreeNode<T> node) {
         if (node.getLeft()!=null) {
             postOrder(node.getLeft());
         }

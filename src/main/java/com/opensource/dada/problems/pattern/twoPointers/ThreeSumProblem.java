@@ -9,8 +9,30 @@ import java.util.List;
  */
 public class ThreeSumProblem {
     public static void main(String[] args) {
+        test1();
+        test2();
+        test3();
+    }
+
+    public static void test1() {
         List<int[]> result = threeSum(new int[]{-1, 0, 1, 2, -1, -4});
         System.out.println("Result:");
+        for (int[] arr: result) {
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+
+    public static void test2() {
+        List<int[]> result = threeSum(new int[]{-3, 0, 1, 2, -1, 1, -2});
+        System.out.println("Result:");//[-3, 1, 2], [-2, 0, 2], [-2, 1, 1], [-1, 0, 1]
+        for (int[] arr: result) {
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+
+    public static void test3() {
+        List<int[]> result = threeSum(new int[]{-5, 2, -1, -2, 3});
+        System.out.println("Result:");//[-5, 2, 3], [-2, -1, 3]
         for (int[] arr: result) {
             System.out.println(Arrays.toString(arr));
         }
@@ -20,7 +42,7 @@ public class ThreeSumProblem {
         Arrays.sort(arr);
         List<int[]> resultList = new ArrayList<>();
 
-        for (int i=0;i<arr.length-3; i++) {
+        for (int i=0;i<arr.length-2; i++) {
             int start = i+1;
             int end = arr.length-1;
             while (start<end) {

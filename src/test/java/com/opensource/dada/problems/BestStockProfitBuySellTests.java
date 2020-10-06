@@ -2,7 +2,7 @@ package com.opensource.dada.problems;
 
 import org.junit.jupiter.api.Test;
 
-import static com.opensource.dada.problems.BestStockProfitBuySell.getMaxProfit;
+import static com.opensource.dada.alg.dynamicprogramming.BestStockProfitBuySell.getMaxProfit;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BestStockProfitBuySellTests {
