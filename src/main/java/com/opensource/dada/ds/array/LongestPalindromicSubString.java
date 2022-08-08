@@ -23,8 +23,8 @@ public class LongestPalindromicSubString {
             if (str.charAt(leftIndex) != str.charAt(rightIndex)) {
                 break;
             }
-            leftIndex -= 1;
-            rightIndex += 1;
+            leftIndex--;
+            rightIndex++;
         }
         return new int[]{leftIndex + 1, rightIndex};
     }

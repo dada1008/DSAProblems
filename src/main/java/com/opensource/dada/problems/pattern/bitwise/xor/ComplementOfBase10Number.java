@@ -64,7 +64,7 @@ package com.opensource.dada.problems.pattern.bitwise.xor;
  */
 public class ComplementOfBase10Number {
     public static void main(String[] args) {
-
+        System.out.println("result: "+bitwiseComplement(8));
     }
 
     static int bitwiseComplement(int num) {

@@ -34,7 +34,7 @@ public class StringAnagrams {
         System.out.println("Result:"+findStringAnagrams("abbcabc", "abc"));
     }
 
-    static List<Integer> findStringAnagrams(String str, String pattern) {
+    public static List<Integer> findStringAnagrams(String str, String pattern) {
         List<Integer> resultIndices = new ArrayList<>();
         char[] strChars = str.toCharArray();
         char[] patternChars = pattern.toCharArray();

@@ -1,11 +1,31 @@
 package com.opensource.dada.problems;
 
-
 public class ZalandoProblem {
     public static void main(String[] agrs) {
         System.out.println("Welcome to Zalando codility tasks of 90 minutes");
         //testSmallnum();
-        testSqrtOp();
+        //testSqrtOp();
+        
+        System.out.println(solution2("A2Le", "2pL1"));
+        System.out.println(solution2("a10", "10a"));
+        System.out.println(solution2("ba1", "1Ad"));
+        System.out.println(solution2("3x2x", "8"));
+        
+        System.out.println(solution3("abbabba"));
+    }
+
+    public static int solution3(String S) {
+        // write your code in Java SE 8
+        int result = 0;
+        int length = S.length();
+        for(int i=0; i< length; i++) {
+            String prefix = S.substring(0,i);
+            String suffix = S.substring(length-i, length);
+            if(prefix.equals(suffix) && result < suffix.length()) {
+                result = suffix.length();
+            }
+        }
+        return result;
     }
 
     static void testSmallnum() {
@@ -18,6 +38,66 @@ public class ZalandoProblem {
         int B = 7000;
         System.out.println("smallNumberWithSameNumOfDigits of A:"+A+" and B: "+B +" is: "+maxNumOfRepeatedSquareRootOperations(A,B));
     }
+
+    // you can also use imports, for example:
+// import java.util.*;
+
+// you can write to stdout for debugging purposes, e.g.
+// System.out.println("this is a debug message");
+
+    public static boolean solution2(String S, String T) {
+        // write your code in Java SE 8
+        String prefix = S.substring(2);
+        String sStr = getActualString(S);
+        String tStr = getActualString(T);
+        int sLength = sStr.length();
+        int tLength = tStr.length();
+        if(sLength !=tLength){
+            return false;
+        }
+        int sIndex = 0, tIndex = 0;
+        while(sIndex < sLength && tIndex < tLength) {
+            char sChar = sStr.charAt(sIndex);
+            char tChar = tStr.charAt(tIndex);
+            if(!(sChar=='?' || tChar=='?') && sChar!=tChar) {
+                return false;
+            }
+            sIndex++;
+            tIndex++;
+        }
+
+        return true;
+    }
+
+    public static String getActualString(String str) {
+        int length = str.length();
+        int index = 0;
+        StringBuilder result = new StringBuilder();
+        while(index < length) {
+            char c = str.charAt(index);
+            if(Character.isLetter(c)) {
+                result.append(c);
+                index++;
+            } else {
+                int num = 0;
+                while(index < length) {
+                    c = str.charAt(index);
+                    if(!Character.isDigit(c)) {
+                        break;
+                    }
+                    int digit = Character.getNumericValue(c);
+                    num = num *10 + digit; 
+                    index++;              
+                }
+                for(int i=0; i< num; i++) {
+                    result.append('?');
+                }
+            }
+        }
+        return result.toString();
+    }
+
+
     /**
      Write a function that, given an integer N,
      returns the smallest number with the same number of digits.

@@ -1,0 +1,7 @@
+.idea/*
+.gradle/*
+.vscode/*
+out/*
+target/*
+.DS_Store
+DSAProblems.iml

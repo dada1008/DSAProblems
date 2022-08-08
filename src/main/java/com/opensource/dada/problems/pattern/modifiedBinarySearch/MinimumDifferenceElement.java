@@ -39,7 +39,7 @@ public class MinimumDifferenceElement {
         while (start <= end) {
             int mid = start + (end - start) / 2;
             if (arr[mid] == key) {
-                return mid;
+                return arr[mid];
             } else if (arr[mid] < key) {
                 start = mid + 1;
             } else {

@@ -1,0 +1,302 @@
+/*
+ * Design an Implement a LRU cache
+ * LRU -> Map<String, String> for max size = n
+ * Remove the last used entry if the map is full - and you need to add a new entry
+ * "abc" => "foo"
+ * "pqr" => "bar"
+ * "lmn" => "baz"
+ */
+/**
+int capacity = 10;
+Node<Key,Value> start =null;
+Node<Key,Value> end = null;
+Map<Key,Node<Key,Value>> map = new HashMap<>();
+Node<Key,Value> {
+  Key key;
+  Value value;
+  Node<Key,Value> next;
+  Node<Key,Value> prev;
+}
+add(Key key, Value value) {
+  Node<Key,Value> node = map.get(key);
+  if(node==null) {
+    node = new Node(key, value);
+    map.put(key, node);
+    if(capacity<=map.size()) {
+      remove(end.key);
+    }
+    addNode(node);
+  } else {
+    map.put(key, node);
+    removeNode(node);
+    addNode(node);
+  }
+}
+private void addNode(Node node) {
+  if(start==null) {
+      start = node;
+      end = node;
+    } else {
+      start.next = node;
+      node.prev = start;
+      start = node;
+    }
+}
+remove(Key key) {
+  Node node = map.get(key);
+  if(node!=null) {
+    map.remove(key);
+    removeNode(node);
+  }
+}
+private void removeNode(Node node) {
+  if(node.pre!=null) {
+    node.prev.next = node.next;
+  } else {
+    start = node.next;
+  }
+  if(node.next!=null) {
+    node.next.prev = node.prev;
+  } else {
+    end = node.prev;
+  }
+}
+get(Key key) {
+  Node node = map.get(key);
+  if(node==null) {
+    return null;
+  }
+  removeNode(node);
+  addNode(node);
+  return node.getValue();
+}
+**/
+
+import java.io.*;
+import java.util.*;
+
+/*
+ * To execute Java, please define "static void main" on a class
+ * named Solution.
+ *
+ * If you need more classes, simply define them inline.
+ */
+
+class Solution {
+  public static void main(String[] args) {
+    ArrayList<String> strings = new ArrayList<>();
+    strings.add("Hello, World!");
+    strings.add("Welcome to CoderPad.");
+    strings.add("This pad is running Java " + Runtime.version().feature());
+
+    for (String string : strings) {
+      System.out.println(string);
+    }
+
+    testAddStart();
+    testRemoveStart();
+    testCapacityCheck();
+    testAddEnd();
+    testRemoveEnd();
+    testGetShouldBumpKey();
+  }
+
+  static void testAddStart() {
+    LRUCache<String, String> cache = new LRUCache<>(5);
+    String key = "dada";
+    String value = "1";
+    cache.add(key, value);
+    String getValue = cache.get(key);
+    if(!value.equals(getValue)) {
+      System.out.println("testAddStart failed");
+    }
+
+    System.out.println("testAddStart passed");
+
+  }
+
+  static void testRemoveStart() {
+    LRUCache<String, String> cache = new LRUCache<>(5);
+    String key = "dada";
+    String value = "1";
+    cache.add(key, value);
+    String getValue = cache.get(key);
+    if(!value.equals(getValue)) {
+      System.out.println("testRemoveStart failed");
+    }
+
+    cache.remove(key);
+    if(cache.get(key)!=null) {
+      System.out.println("testRemoveStart failed");
+    }
+
+    System.out.println("testRemoveStart passed");
+  }
+
+  static void testCapacityCheck() {
+    LRUCache<String, String> cache = new LRUCache<>(2);
+    String key = "dada";
+    String value = "1";
+    cache.add(key, value);
+    String key2 = "raj";
+    String value2 = "2";
+    cache.add(key2, value2);
+
+    String key3 = "blue";
+    String value3 = "3";
+    cache.add(key3, value3);
+
+    if(cache.get(key)!=null) {
+      System.out.println("testCapacityCheck failed");
+    }
+
+    System.out.println("testCapacityCheck passed");
+  }
+
+  static void testAddEnd() {
+    LRUCache<String, String> cache = new LRUCache<>(2);
+    String key = "dada";
+    String value = "1";
+    cache.add(key, value);
+    String key2 = "raj";
+    String value2 = "2";
+    cache.add(key2, value2);
+    String getValue = cache.get(key2);
+    if(!value2.equals(getValue)) {
+      System.out.println("testAddEnd failed");
+    }
+
+    System.out.println("testAddEnd passed");
+  }
+
+  static void testRemoveEnd() {
+    LRUCache<String, String> cache = new LRUCache<>(5);
+    String key = "dada";
+    String value = "1";
+    cache.add(key, value);
+    String key2 = "raj";
+    String value2 = "2";
+    cache.add(key2, value2);
+
+    cache.remove(key2);
+    if(cache.get(key2)!=null) {
+      System.out.println("testRemoveEnd failed");
+    }
+
+    System.out.println("testRemoveEnd passed");
+  }
+
+  static void testGetShouldBumpKey() {
+    LRUCache<String, String> cache = new LRUCache<>(2);
+    String key = "dada";
+    String value = "1";
+    cache.add(key, value);
+
+    String key2 = "raj";
+    String value2 = "2";
+    cache.add(key2, value2);
+
+    cache.get(key);
+
+    String key3 = "blue";
+    String value3 = "3";
+    cache.add(key3, value3);
+
+    if(cache.get(key)==null) {
+      System.out.println("testGetShouldBumpKey 1 failed");
+    }
+    if(cache.get(key3)==null) {
+      System.out.println("testGetShouldBumpKey 2 failed");
+    }
+    if(cache.get(key2)!=null) {
+      System.out.println("testGetShouldBumpKey 3 failed");
+    }
+
+    System.out.println("testCapacityCheck passed");
+  }
+
+ static class LRUCache<Key,Value> {
+    private int capacity = 10;
+    private Node<Key,Value> start =null;
+    private Node<Key,Value> end = null;
+    private Map<Key,Node<Key,Value>> map = new HashMap<>();
+
+    public LRUCache(int capacity) {
+      this.capacity = capacity;
+    }
+
+    public void add(Key key, Value value) {
+        Node<Key,Value> node = map.get(key);
+        if(node==null) {
+          node = new Node<Key,Value>(key, value);
+          map.put(key, node);
+          if(map.size()>capacity) {
+            remove(end.key);
+          }
+          addNode(node);
+        } else {
+          map.put(key, node);
+          removeNode(node);
+          addNode(node);
+        }
+      }
+      private void addNode(Node<Key,Value> node) {
+        node.next = start;
+        if (start != null) {
+          start.prev = node;
+        }
+        start = node;
+        if (end == null) {
+          end = start;
+        }
+
+      }
+      public void remove(Key key) {
+        Node<Key,Value> node = map.get(key);
+        if(node!=null) {
+          map.remove(key);
+          removeNode(node);
+        }
+      }
+      private void removeNode(Node<Key,Value> node) {
+        if(node.prev!=null) {
+          node.prev.next = node.next;
+        } else {
+          start = node.next;
+        }
+        if(node.next!=null) {
+          node.next.prev = node.prev;
+        } else {
+          end = node.prev;
+        }
+      }
+      public Value get(Key key) {
+        Node<Key,Value> node = map.get(key);
+        if(node==null) {
+          return null;
+        }
+        removeNode(node);
+        addNode(node);
+        return node.getValue();
+      }
+  }
+
+  static class Node<Key,Value> {
+    Key key;
+    Value value;
+    Node<Key,Value> next;
+    Node<Key,Value> prev;
+
+    Node(Key key, Value value) {
+      this.key = key;
+      this.value = value;
+    }
+    public Value getValue() {
+      return this.value;
+    }
+    public Key getKey() {
+      return this.key;
+    }
+  }
+
+}

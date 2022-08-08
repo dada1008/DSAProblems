@@ -30,6 +30,8 @@ import com.opensource.dada.ds.tree.TreeNode;
  *            /     /
  *           10    11
  *
+ * Output: 7
+ * Explaination: The diameter of the tree is: [10, 8, 5, 3, 6, 9, 11]
  */
 public class TreeDiameter {
     static int treeDiameter = 0;

@@ -54,6 +54,7 @@ public class DiskStacking {
             maxHeightIndex = sequences[maxHeightIndex];
         }
         Collections.reverse(sequence);
+
         return sequence;
     }
 

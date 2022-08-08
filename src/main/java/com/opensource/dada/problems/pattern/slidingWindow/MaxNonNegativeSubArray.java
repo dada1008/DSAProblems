@@ -3,6 +3,7 @@ package com.opensource.dada.problems.pattern.slidingWindow;
 import com.sun.source.tree.Tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -33,7 +34,7 @@ public class MaxNonNegativeSubArray {
 
         list = List.of(1967513926, 1540383426, -1303455736, -521595368);
         System.out.println("list:"+list+" result:"+maxset(list));*/
-
+        (new HashMap<>()).getOrDefault("10",0);
         list = List.of(756898537, -1973594324, -2038664370, -184803526, 1424268980);
         System.out.println("list:"+list+" result:"+maxset(list));
 

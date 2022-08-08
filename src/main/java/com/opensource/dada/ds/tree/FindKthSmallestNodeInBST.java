@@ -13,7 +13,7 @@ public class FindKthSmallestNodeInBST {
         }
 
         // search in left subtree
-        int left = kthSmallest(root.left, i, k);
+        int left = kthSmallest(root.left, i, k);//9822682759 - call in between 5:30-6:30pm monday to friday for appointment
 
         // if k'th smallest is found in left subtree, return it
         if (left != Integer.MAX_VALUE) {
